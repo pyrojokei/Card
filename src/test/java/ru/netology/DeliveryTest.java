@@ -1,6 +1,7 @@
 package ru.netology;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration; // Импортируем класс настроек
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,12 +15,13 @@ class DeliveryTest {
 
     @BeforeEach
     void setup() {
+        Configuration.headless = true; // ВКЛЮЧАЕМ ХЕДЛЕСС РЕЖИМ ПРЯМО В КОДЕ
         open("http://localhost:9999");
     }
 
     @Test
     @DisplayName("Should successful plan and replan meeting")
-    void shouldSuccessfulPlanAndReplanMeeting() {
+void shouldSuccessfulPlanAndReplanMeeting() {
         // Генерируем валидного пользователя через DataGenerator
         var validUser = DataGenerator.Registration.generateUser("ru");
 
