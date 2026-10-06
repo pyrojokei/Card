@@ -1,7 +1,6 @@
 package ru.netology;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration; // Импортируем класс настроек
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,13 +14,12 @@ class DeliveryTest {
 
     @BeforeEach
     void setup() {
-        Configuration.headless = true; // ВКЛЮЧАЕМ ХЕДЛЕСС РЕЖИМ ПРЯМО В КОДЕ
         open("http://localhost:9999");
     }
 
     @Test
     @DisplayName("Should successful plan and replan meeting")
-void shouldSuccessfulPlanAndReplanMeeting() {
+    void shouldSuccessfulPlanAndReplanMeeting() {
         // Генерируем валидного пользователя через DataGenerator
         var validUser = DataGenerator.Registration.generateUser("ru");
 
@@ -45,9 +43,7 @@ void shouldSuccessfulPlanAndReplanMeeting() {
         $$("button").find(Condition.text("Запланировать")).click();
 
         // Проверяем всплывающее окно первой заявки
-        $("[data-test-id='success-notification']")
-                .shouldBe(Condition.visible, Duration.ofSeconds(15))
-                .shouldHave(Condition.text("Успешно! Встреча успешно запланирована на " + firstMeetingDate));
+        $("[data-test-id='success-notification']").shouldBe(Condition.visible, Duration.ofSeconds(15)).shouldHave(Condition.text("Успешно! Встреча успешно запланирована на " + firstMeetingDate));
 
         // --- ПОВТОРНЫЙ ЗАКАЗ (ПЕРЕПЛАНИРОВАНИЕ) ---
         // Меняем только дату
@@ -57,16 +53,12 @@ void shouldSuccessfulPlanAndReplanMeeting() {
         $$("button").find(Condition.text("Запланировать")).click();
 
         // Проверяем появление окна с предложением перепланировать
-        $("[data-test-id='replan-notification']")
-                .shouldBe(Condition.visible, Duration.ofSeconds(15))
-                .shouldHave(Condition.text("Необходимо подтверждение У вас уже запланирована встреча на другую дату. Перепланировать?"));
+        $("[data-test-id='replan-notification']").shouldBe(Condition.visible, Duration.ofSeconds(15)).shouldHave(Condition.text("Необходимо подтверждение У вас уже запланирована встреча на другую дату. Перепланировать?"));
 
         // Кликаем по кнопке Перепланировать
         $$("[data-test-id='replan-notification'] button").find(Condition.text("Перепланировать")).click();
 
         // Уведомление об успешном перепланировании
-        $("[data-test-id='success-notification']")
-                .shouldBe(Condition.visible, Duration.ofSeconds(15))
-                .shouldHave(Condition.text("Успешно! Встреча успешно запланирована на " + secondMeetingDate));
+        $("[data-test-id='success-notification']").shouldBe(Condition.visible, Duration.ofSeconds(15)).shouldHave(Condition.text("Успешно! Встреча успешно запланирована на " + secondMeetingDate));
     }
 }

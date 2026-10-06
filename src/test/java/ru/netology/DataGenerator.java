@@ -19,8 +19,7 @@ public class DataGenerator {
 
 
     public static String generateCity(String locale) {
-        String[] cities = {"Москва", "Санкт-Петербург", "Новосибирск", "Екатеринбург", "Нижний Новгород",
-                "Казань", "Челябинск", "Омск", "Самара", "Ростов-на-Дону", "Уфа", "Красноярск"};
+        String[] cities = {"Москва", "Санкт-Петербург", "Новосибирск", "Екатеринбург", "Нижний Новгород", "Казань", "Челябинск", "Омск", "Самара", "Ростов-на-Дону", "Уфа", "Красноярск"};
         int index = new Random().nextInt(cities.length);
         return cities[index];
     }
@@ -43,11 +42,7 @@ public class DataGenerator {
         }
 
         public static UserInfo generateUser(String locale) {
-            return new UserInfo(
-                    generateCity(locale),
-                    generateName(locale),
-                    generatePhone(locale)
-            );
+            return new UserInfo(generateCity(locale), generateName(locale), generatePhone(locale));
         }
     }
 

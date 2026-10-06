@@ -1,20 +1,15 @@
-# Gradle локальные файлы и папки сборки
 .gradle/
 build/
 
-# Файлы настроек среды разработки IntelliJ IDEA
 .idea/
 *.iml
 *.ipr
 *.iws
 out/
 
-# Локальные артефакты (чтобы не пушить ваши jar-файлы приложений на GitHub)
 artifacts/
 
-# Логи системы
 *.log
 
-# Файлы операционной системы
 .DS_Store
 Thumbs.db

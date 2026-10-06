@@ -1,6 +1,6 @@
 name: Java CI with Gradle
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
   build:
@@ -15,11 +15,6 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-
-      - name: Setup Chrome
-        uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: stable
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
